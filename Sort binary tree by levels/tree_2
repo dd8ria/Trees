@@ -1,8 +1,29 @@
+"""sort binary tree by levels"""
+from collections import deque
+
 class Node:
+    """node"""
     def __init__(self, L, R, n):
         self.left = L
         self.right = R
         self.value = n
 
 def tree_by_levels(node):
-    return
+    """
+    traverse a binary tree level by level
+    """
+    if node is None:
+        return []
+
+    result = []
+    queue = deque([node])
+
+    while queue:
+        current = queue.popleft()
+        result.append(current.value)
+
+        if current.left:
+            queue.append(current.left)
+        if current.right:
+            queue.append(current.right)
+    return result
